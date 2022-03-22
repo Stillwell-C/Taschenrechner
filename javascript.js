@@ -49,31 +49,31 @@ const zeroBtn = document.querySelector('#btn0');
 zeroBtn.addEventListener('click', () => displayValue = 0)
 
 //Assign operation to operator buttons
+//Removed num2 option for now due to error
+//typeof num1 == 'undefined' ?
+//num1 = displayValue : num2 = displayValue;
+
 const dvdBtn = document.querySelector('#dvdBtn');
 dvdBtn.addEventListener('click', () => { 
     operator = 'divide';
-    typeof num1 == 'undefined' ?
-     num1 = displayValue : num2 = displayValue;
+    num1 = displayValue;
 });
 const multBtn = document.querySelector('#multBtn');
 multBtn.addEventListener('click', () => {
     operator = 'multiply';
-    typeof num1 == 'undefined' ?
-    num1 = displayValue : num2 = displayValue;
+    num1 = displayValue;
 });
 
 const subBtn = document.querySelector('#subBtn');
 subBtn.addEventListener('click', () => {
     operator = 'subtract';
-    typeof num1 == 'undefined' ?
-    num1 = displayValue : num2 = displayValue;
+    num1 = displayValue;
 });
 
 const addBtn = document.querySelector('#plsBtn');
 addBtn.addEventListener('click', () => {
     operator = 'add';
-    typeof num1 == 'undefined' ?
-     num1 = displayValue : num2 = displayValue;
+    num1 = displayValue;
 });
 
 //Make equal button call operate function
