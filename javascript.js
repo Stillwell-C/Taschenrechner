@@ -1,4 +1,4 @@
-let operator = 'multiply'
+let operator
 let currentValue = 0
 let displayValue
 const container = document.querySelector('#main-body')
@@ -46,3 +46,20 @@ threeBtn.addEventListener('click', () => displayValue = 3)
 
 const zeroBtn = document.querySelector('#btn0');
 zeroBtn.addEventListener('click', () => displayValue = 0)
+
+//Assign operation to operator buttons
+const dvdBtn = document.querySelector('#dvdBtn');
+dvdBtn.addEventListener('click', () => operator = 'divide')
+
+const multBtn = document.querySelector('#multBtn');
+multBtn.addEventListener('click', () => operator = 'multiply')
+
+const subBtn = document.querySelector('#subBtn');
+subBtn.addEventListener('click', () => operator = 'subtract')
+
+const addBtn = document.querySelector('#plsBtn');
+addBtn.addEventListener('click', () => operator = 'add')
+
+//Make equal button call operate function
+const eqlBtn = document.querySelector('#eqlBtn');
+eqlBtn.addEventListener('click', () => operate());
