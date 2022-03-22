@@ -1,18 +1,19 @@
 let operator
 let currentValue = 0
-let displayValue
+let displayValue = 0
+let num1
+let num2
 const container = document.querySelector('#main-body')
-
 
 function operate(num1, num2){
     if (operator == 'add'){
-        return currentValue = num1 + num2;
+        return displayValue = num1 + num2
     } else if (operator == 'subtract') {
-        return currentValue = num1 - num2;
+        return displayValue = num1 - num2;
     } else if (operator == 'multiply') {
-        return currentValue = num1 * num2;
+        return displayValue = num1 * num2;
     } else if (operator == 'divide') {
-        return currentValue = num1 / num2;
+        return displayValue = num1 / num2;
     }
 }
 
@@ -49,17 +50,42 @@ zeroBtn.addEventListener('click', () => displayValue = 0)
 
 //Assign operation to operator buttons
 const dvdBtn = document.querySelector('#dvdBtn');
-dvdBtn.addEventListener('click', () => operator = 'divide')
-
+dvdBtn.addEventListener('click', () => { 
+    operator = 'divide';
+    typeof num1 == 'undefined' ?
+     num1 = displayValue : num2 = displayValue;
+});
 const multBtn = document.querySelector('#multBtn');
-multBtn.addEventListener('click', () => operator = 'multiply')
+multBtn.addEventListener('click', () => {
+    operator = 'multiply';
+    typeof num1 == 'undefined' ?
+    num1 = displayValue : num2 = displayValue;
+});
 
 const subBtn = document.querySelector('#subBtn');
-subBtn.addEventListener('click', () => operator = 'subtract')
+subBtn.addEventListener('click', () => {
+    operator = 'subtract';
+    typeof num1 == 'undefined' ?
+    num1 = displayValue : num2 = displayValue;
+});
 
 const addBtn = document.querySelector('#plsBtn');
-addBtn.addEventListener('click', () => operator = 'add')
+addBtn.addEventListener('click', () => {
+    operator = 'add';
+    typeof num1 == 'undefined' ?
+     num1 = displayValue : num2 = displayValue;
+});
 
 //Make equal button call operate function
 const eqlBtn = document.querySelector('#eqlBtn');
-eqlBtn.addEventListener('click', () => operate());
+eqlBtn.addEventListener('click', () => {
+    operate(num1, displayValue);
+    });
+
+//Clear button makes num 1, num 2, & display value zero
+const clrBtn = document.querySelector('#clrBtn');
+clrBtn.addEventListener('click', () => {
+    num1 = 'undefined'
+    num2 = 'undefined'
+    displayValue = 0
+})
