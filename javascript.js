@@ -4,6 +4,7 @@ let displayValue = 0 //Make array?
 let num1
 let num2
 let snarkTest = false
+let multiCalc = false
 const container = document.querySelector('#main-body')
 
 function operate(num1, num2){
@@ -32,6 +33,7 @@ function calculate() {
     console.log(num2);
     allotDV();
     screenUpdate();
+    multiCalc = true;
 }
 
 // Assign value when number button is clicked
@@ -126,7 +128,7 @@ function getID(btn) {
 
 //Allot inputs into either num1 variable or num2 variable
 function allotNum(value) {
-    if (operator == null) {
+    if (operator == null && multiCalc == false) {
         if (num1 != undefined || num1 != null) {
          let numValue = `${num1}${value}`
          return num1 = parseInt(numValue);
@@ -192,8 +194,8 @@ function testCalculate() {
 //Make equal button call operate function
 const eqlBtn = document.querySelector('#eqlBtn');
 eqlBtn.addEventListener('click', () => {
-    // operate(num1, displayValue);
     calculate();
+    operator = null;
     });
 
 //Clear button makes num 1, num 2, & display value zero
@@ -204,6 +206,7 @@ clrBtn.addEventListener('click', () => {
     operator = null;
     displayValue = 0
     snarkTest = false;
+    multiCalc = false;
     screenUpdate();
 })
 
