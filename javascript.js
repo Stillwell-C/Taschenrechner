@@ -144,21 +144,33 @@ function allotDV() {
 const dvdBtn = document.querySelector('#dvdBtn');
 dvdBtn.addEventListener('click', () => { 
     operator = 'divide';
+    testCalculate();
 });
 const multBtn = document.querySelector('#multBtn');
 multBtn.addEventListener('click', () => {
     operator = 'multiply';
+    testCalculate();
 });
 
 const subBtn = document.querySelector('#subBtn');
 subBtn.addEventListener('click', () => {
     operator = 'subtract';
+    testCalculate();
 });
 
 const addBtn = document.querySelector('#plsBtn');
 addBtn.addEventListener('click', () => {
     operator = 'add';
+    testCalculate();
 });
+
+//Make function to test whether operator button should run calculation
+function testCalculate() {
+    if ((num1 != undefined || num1 != null) && 
+    (num2 != undefined || num2 != null)) {
+        calculate();
+    }
+}
 
 //Make equal button call operate function
 const eqlBtn = document.querySelector('#eqlBtn');
