@@ -8,8 +8,8 @@ let multiCalc = false
 const container = document.querySelector('#main-body')
 
 function operate(num1, num2){
-    num1 = parseInt(num1);
-    num2 = praseInt(num2);
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
     if (operator == 'add'){
         return num1 + num2;
     } else if (operator == 'subtract') {
@@ -30,8 +30,13 @@ function calculate() {
     num2 = null;
     operator = null;
     allotDV();
+    displayValue = decimalRounder(displayValue);
     screenUpdate();
     multiCalc = true;
+}
+
+function decimalRounder(value) {
+    return value = Math.round((value + Number.EPSILON) * 1000) / 1000;
 }
 
 // Assign value when number button is clicked
@@ -137,7 +142,6 @@ function allotNum(value) {
         if (num1 != undefined || num1 != null) {
          let numValue = `${num1}${value}`
          return num1 = numValue;
-        //  return num1 = parseInt(numValue);
         } else {
             return num1 = value;
         }
@@ -145,7 +149,6 @@ function allotNum(value) {
         if (num2 != undefined || num2 != null) {
             let numValue = `${num2}${value}`
             return num2 = numValue;
-            // return num2 = parseInt(numValue);
             } else {
                 return num2 = value;
             }
@@ -162,20 +165,20 @@ function allotDV() {
     }
 }
 
-// function decimalAdder() {
-//     if (operator == null && multiCalc ==false) {
-//         if ((num1 != undefined || num1 != null) && ((num1 + '').includes('.') == false)) {
-//                 return num1 = num1+'.';
-//         } else if (num1 == undefined || num1 == null) {
-//             return num1 = 0+'.';
-//     } 
-// } else {
-//         if ((num2 != undefined || num2 != null) && ((num2 + '').includes('.') == false)) {
-//             return num2 = num2+'.';
-//         } else if (num2 == undefined || num1 == null) {
-//         return num2 = 0+'.';
-//     }
-// }}
+function decimalAdder() {
+    if (operator == null && multiCalc ==false) {
+        if ((num1 != undefined || num1 != null) && ((num1 + '').includes('.') == false)) {
+                return num1 = num1+'.';
+        } else if (num1 == undefined || num1 == null) {
+            return num1 = 0+'.';
+    } 
+} else {
+        if ((num2 != undefined || num2 != null) && ((num2 + '').includes('.') == false)) {
+            return num2 = num2+'.';
+        } else if (num2 == undefined || num1 == null) {
+        return num2 = 0+'.';
+    }
+}}
 
 //Assign operation to operator buttons
 //Removed num2 option for now due to error
