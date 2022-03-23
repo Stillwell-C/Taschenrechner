@@ -3,6 +3,7 @@ let currentValue = 0
 let displayValue = 0 //Make array?
 let num1
 let num2
+let snarkTest = false
 const container = document.querySelector('#main-body')
 
 function operate(num1, num2){
@@ -13,7 +14,11 @@ function operate(num1, num2){
     } else if (operator == 'multiply') {
         return num1 * num2;
     } else if (operator == 'divide') {
-        return num1 / num2;
+        if (num2 == 0) {
+            return snarkTest = true;
+        } else {
+            return num1 / num2
+        }
     }
 }
 
@@ -196,7 +201,9 @@ const clrBtn = document.querySelector('#clrBtn');
 clrBtn.addEventListener('click', () => {
     num1 = null
     num2 = null
+    operator = null;
     displayValue = 0
+    snarkTest = false;
     screenUpdate();
 })
 
@@ -210,6 +217,11 @@ screenContainer.appendChild(screenDisplay);
 
 //Function to update screen content
 function screenUpdate() {
+    if (snarkTest == true) {
+    screenDisplay.textContent = 'Not so fast, buster';
+    screenContainer.appendChild(screenDisplay);
+    } else {
     screenDisplay.textContent = displayValue;
     screenContainer.appendChild(screenDisplay);
+    }
 }
