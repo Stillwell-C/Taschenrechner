@@ -145,6 +145,9 @@ function allotNum(value) {
         } else {
             return num1 = value;
         }
+    } else if (operator == null && multiCalc == true) {
+        mCalOff();
+        return num1 = value;
     } else {
         if (num2 != undefined || num2 != null) {
             let numValue = `${num2}${value}`
@@ -153,6 +156,10 @@ function allotNum(value) {
                 return num2 = value;
             }
 }}
+
+function mCalOff() {
+    return multiCalc = false;
+}
 
 //Determine whether displayValue is num1 or num2
 function allotDV() {
@@ -244,12 +251,14 @@ prctBtn.addEventListener('click', () => {
     if (num1 == undefined || num1 == null) {
         
     } else if (num2 == undefined || num2 == null) {
-        num1 = num1*0.01
+        num1 = (parseFloat(num1))*0.01
+        num1 = decimalRounder(num1)
         allotDV();
         screenUpdate();
         return num1;
     } else {
-        num2 = num2*0.01
+        num2 = (parseFloat(num2))*0.01
+        num2 = decimalRounder(num2)
         allotDV();
         screenUpdate();
         return num2;
