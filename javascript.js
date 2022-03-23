@@ -1,4 +1,4 @@
-let operator
+let operator = null
 let currentValue = 0
 let displayValue = 0 //Make array?
 let num1
@@ -23,6 +23,7 @@ function calculate() {
     num1 = operate(num1, num2);
     console.log(num1);
     num2 = null;
+    operator = null;
     console.log(num2);
     allotDV();
     screenUpdate();
@@ -120,12 +121,21 @@ function getID(btn) {
 
 //Allot inputs into either num1 variable or num2 variable
 function allotNum(value) {
-    if (num1 == undefined || num1 == null) {
-        return num1 = value;
+    if (operator == null) {
+        if (num1 != undefined || num1 != null) {
+         let numValue = `${num1}${value}`
+         return num1 = parseInt(numValue);
+        } else {
+            return num1 = value;
+        }
     } else {
-        return num2 = value;
-    }
-}
+        if (num2 != undefined || num2 != null) {
+            let numValue = `${num2}${value}`
+            return num2 = parseInt(numValue);
+            } else {
+                return num2 = value;
+            }
+}}
 
 //Determine whether displayValue is num1 or num2
 function allotDV() {
