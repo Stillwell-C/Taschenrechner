@@ -140,9 +140,11 @@ function allotNum(value) {
 //Determine whether displayValue is num1 or num2
 function allotDV() {
     if (num2 == undefined || num2 == null) {
-        return displayValue = num1;
+        displayValue = num1;
+        return displayValue = Math.round((displayValue + Number.EPSILON) * 1000) / 1000;
     } else {
-       return displayValue = num2;
+       displayValue = num2;
+       return displayValue = Math.round((displayValue + Number.EPSILON) * 1000) / 1000;
     }
 }
 
