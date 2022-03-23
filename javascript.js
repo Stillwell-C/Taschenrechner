@@ -24,13 +24,9 @@ function operate(num1, num2){
 }
 
 function calculate() {
-    console.log(num1);
-    console.log(num2);
     num1 = operate(num1, num2);
-    console.log(num1);
     num2 = null;
     operator = null;
-    console.log(num2);
     allotDV();
     screenUpdate();
     multiCalc = true;
@@ -164,39 +160,41 @@ const dvdBtn = document.querySelector('#dvdBtn');
 dvdBtn.addEventListener('click', () => { 
     operator = 'divide';
     testCalculate();
+    return operator = 'divide';
 });
 const multBtn = document.querySelector('#multBtn');
 multBtn.addEventListener('click', () => {
     operator = 'multiply';
     testCalculate();
+    return operator = 'multiply';
 });
 
 const subBtn = document.querySelector('#subBtn');
 subBtn.addEventListener('click', () => {
     operator = 'subtract';
     testCalculate();
+    return operator = 'subtract';
 });
 
 const addBtn = document.querySelector('#plsBtn');
 addBtn.addEventListener('click', () => {
     operator = 'add';
     testCalculate();
+    return operator = 'add';
 });
 
 //Make function to test whether operator button should run calculation
 function testCalculate() {
     if ((num1 != undefined || num1 != null) && 
-    (num2 != undefined || num2 != null)) {
+    (num2 != undefined || num2 != null))
         calculate();
     }
-}
 
 //Make equal button call operate function
 const eqlBtn = document.querySelector('#eqlBtn');
 eqlBtn.addEventListener('click', () => {
     calculate();
-    operator = null;
-    });
+})
 
 //Clear button makes num 1, num 2, & display value zero
 const clrBtn = document.querySelector('#clrBtn');
