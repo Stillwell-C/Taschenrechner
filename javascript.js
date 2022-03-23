@@ -18,11 +18,12 @@ function operate(num1, num2){
 }
 
 function calculate() {
-    operate(num1, displayValue);
+    operate(num1, num2);
     screenUpdate()
 }
 
 // Assign value when number button is clicked
+// Combine all into single listener based on class
 const sevenBtn = document.querySelector('#b7');
 sevenBtn.addEventListener('click', () => {
     let getIDValue = getID(sevenBtn);
@@ -41,58 +42,66 @@ eightBtn.addEventListener('click', () => {
 
 const nineBtn = document.querySelector('#b9');
 nineBtn.addEventListener('click', () => {
-    displayValue = getID(nineBtn);
+    let getIDValue = getID(nineBtn);
+    allotNum(getIDValue);
+    allotDV();
     screenUpdate();
-    return displayValue;
 });
 
 const fourBtn = document.querySelector('#b4');
 fourBtn.addEventListener('click', () => {
-    displayValue = getID(fourBtn);
+    let getIDValue = getID(fourBtn);
+    allotNum(getIDValue);
+    allotDV();
     screenUpdate();
-    return displayValue;
 });
 
 const fiveBtn = document.querySelector('#b5');
 fiveBtn.addEventListener('click', () => {
-    displayValue = getID(fiveBtn);
+    let getIDValue = getID(fiveBtn);
+    allotNum(getIDValue);
+    allotDV();
     screenUpdate();
-    return displayValue;
 });
 
 const sixBtn = document.querySelector('#b6');
 sixBtn.addEventListener('click', () => {
-    displayValue = getID(sixBtn);
+    let getIDValue = getID(sixBtn);
+    allotNum(getIDValue);
+    allotDV();
     screenUpdate();
-    return displayValue;
 });
 
 const oneBtn = document.querySelector('#b1');
 oneBtn.addEventListener('click', () => {
-    displayValue = getID(oneBtn);
+    let getIDValue = getID(oneBtn);
+    allotNum(getIDValue);
+    allotDV();
     screenUpdate();
-    return displayValue;
 });
 
 const twoBtn = document.querySelector('#b2');
 twoBtn.addEventListener('click', () => {
-    displayValue = getID(twoBtn);
+    let getIDValue = getID(twoBtn);
+    allotNum(getIDValue);
+    allotDV();
     screenUpdate();
-    return displayValue;
 });
 
 const threeBtn = document.querySelector('#b3');
 threeBtn.addEventListener('click', () => {
-    displayValue = getID(threeBtn);
+    let getIDValue = getID(threeBtn);
+    allotNum(getIDValue);
+    allotDV();
     screenUpdate();
-    return displayValue;
 });
 
 const zeroBtn = document.querySelector('#b0');
 zeroBtn.addEventListener('click', () => {
-    displayValue = getID(zeroBtn);
+    let getIDValue = getID(zeroBtn);
+    allotNum(getIDValue);
+    allotDV();
     screenUpdate();
-    return displayValue;
 });
 
 //Function to get value from button id
@@ -129,18 +138,15 @@ function allotDV() {
 const dvdBtn = document.querySelector('#dvdBtn');
 dvdBtn.addEventListener('click', () => { 
     operator = 'divide';
-    num1 = displayValue;
 });
 const multBtn = document.querySelector('#multBtn');
 multBtn.addEventListener('click', () => {
     operator = 'multiply';
-    num1 = displayValue;
 });
 
 const subBtn = document.querySelector('#subBtn');
 subBtn.addEventListener('click', () => {
     operator = 'subtract';
-    num1 = displayValue;
 });
 
 const addBtn = document.querySelector('#plsBtn');
