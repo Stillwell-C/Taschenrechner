@@ -114,6 +114,13 @@ zeroBtn.addEventListener('click', () => {
     screenUpdate();
 });
 
+const dcmBtn = document.querySelector('#dcmBtn');
+dcmBtn.addEventListener('click', () => {
+    decimalAdder();
+    allotDV();
+    screenUpdate();
+})
+
 //Function to get value from button id
 
 function getID(btn) {
@@ -150,6 +157,21 @@ function allotDV() {
        return displayValue = Math.round((displayValue + Number.EPSILON) * 1000) / 1000;
     }
 }
+
+// function decimalAdder() {
+//     if (operator == null && multiCalc ==false) {
+//         if ((num1 != undefined || num1 != null) && ((num1 + '').includes('.') == false)) {
+//                 return num1 = num1+'.';
+//         } else if (num1 == undefined || num1 == null) {
+//             return num1 = 0+'.';
+//     } 
+// } else {
+//         if ((num2 != undefined || num2 != null) && ((num2 + '').includes('.') == false)) {
+//             return num2 = num2+'.';
+//         } else if (num2 == undefined || num1 == null) {
+//         return num2 = 0+'.';
+//     }
+// }}
 
 //Assign operation to operator buttons
 //Removed num2 option for now due to error
