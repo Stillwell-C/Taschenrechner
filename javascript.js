@@ -8,6 +8,8 @@ let multiCalc = false
 const container = document.querySelector('#main-body')
 
 function operate(num1, num2){
+    num1 = parseInt(num1);
+    num2 = praseInt(num2);
     if (operator == 'add'){
         return num1 + num2;
     } else if (operator == 'subtract') {
@@ -134,14 +136,16 @@ function allotNum(value) {
     if (operator == null && multiCalc == false) {
         if (num1 != undefined || num1 != null) {
          let numValue = `${num1}${value}`
-         return num1 = parseInt(numValue);
+         return num1 = numValue;
+        //  return num1 = parseInt(numValue);
         } else {
             return num1 = value;
         }
     } else {
         if (num2 != undefined || num2 != null) {
             let numValue = `${num2}${value}`
-            return num2 = parseInt(numValue);
+            return num2 = numValue;
+            // return num2 = parseInt(numValue);
             } else {
                 return num2 = value;
             }
@@ -150,11 +154,11 @@ function allotNum(value) {
 //Determine whether displayValue is num1 or num2
 function allotDV() {
     if (num2 == undefined || num2 == null) {
-        displayValue = num1;
-        return displayValue = Math.round((displayValue + Number.EPSILON) * 1000) / 1000;
+        return displayValue = num1;
+        // return displayValue = Math.round((displayValue + Number.EPSILON) * 1000) / 1000;
     } else {
-       displayValue = num2;
-       return displayValue = Math.round((displayValue + Number.EPSILON) * 1000) / 1000;
+       return displayValue = num2;
+    //    return displayValue = Math.round((displayValue + Number.EPSILON) * 1000) / 1000;
     }
 }
 
@@ -215,7 +219,9 @@ function testCalculate() {
 //Make equal button call operate function
 const eqlBtn = document.querySelector('#eqlBtn');
 eqlBtn.addEventListener('click', () => {
-    calculate();
+    if ((num1 != undefined && num1 != null) && (num2 != undefined && num1 != null)) {
+        calculate();
+    }
 })
 
 //Clear button makes num 1, num 2, & display value zero
@@ -230,6 +236,23 @@ clrBtn.addEventListener('click', () => {
     screenUpdate();
 })
 
+const prctBtn = document.querySelector('#prctBtn');
+prctBtn.addEventListener('click', () => {
+    if (num1 == undefined || num1 == null) {
+        
+    } else if (num2 == undefined || num2 == null) {
+        num1 = num1*0.01
+        allotDV();
+        screenUpdate();
+        return num1;
+    } else {
+        num2 = num2*0.01
+        allotDV();
+        screenUpdate();
+        return num2;
+    }
+})
+
 //Make claculations appear on screen
 const screenContainer = document.querySelector('#screen')
 
@@ -241,10 +264,12 @@ screenContainer.appendChild(screenDisplay);
 //Function to update screen content
 function screenUpdate() {
     if (snarkTest == true) {
-    screenDisplay.textContent = 'Not so fast, buster';
+    screenDisplay.textContent = 'Not so fast, buster. ';
+    screenDisplay.setAttribute('style', 'font-size: 37px');
     screenContainer.appendChild(screenDisplay);
     } else {
     screenDisplay.textContent = displayValue;
+    screenDisplay.setAttribute('style', 'font-size: 70px');
     screenContainer.appendChild(screenDisplay);
     }
 }
