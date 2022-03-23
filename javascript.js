@@ -25,16 +25,18 @@ function calculate() {
 // Assign value when number button is clicked
 const sevenBtn = document.querySelector('#b7');
 sevenBtn.addEventListener('click', () => {
-    displayValue = getID(sevenBtn);
+    let getIDValue = getID(sevenBtn);
+    allotNum(getIDValue);
+    allotDV();
     screenUpdate();
-    return displayValue;
 });
 
 const eightBtn = document.querySelector('#b8');
 eightBtn.addEventListener('click', () => {
-    displayValue = getID(eightBtn);
+    let getIDValue = getID(eightBtn);
+    allotNum(getIDValue);
+    allotDV();
     screenUpdate();
-    return displayValue;
 });
 
 const nineBtn = document.querySelector('#b9');
@@ -101,6 +103,24 @@ function getID(btn) {
     return parseInt(idValue);
 }
 
+//Allot inputs into either num1 variable or num2 variable
+function allotNum(value) {
+    if (num1 == undefined || num1 == null) {
+        return num1 = value;
+    } else {
+        return num2 = value;
+    }
+}
+
+//Determine whether displayValue is num1 or num2
+function allotDV() {
+    if (num2 == undefined || num2 == null) {
+        return displayValue = num1;
+    } else {
+       return displayValue = num2;
+    }
+}
+
 //Assign operation to operator buttons
 //Removed num2 option for now due to error
 //typeof num1 == 'undefined' ?
@@ -126,7 +146,6 @@ subBtn.addEventListener('click', () => {
 const addBtn = document.querySelector('#plsBtn');
 addBtn.addEventListener('click', () => {
     operator = 'add';
-    num1 = displayValue;
 });
 
 //Make equal button call operate function
@@ -139,8 +158,8 @@ eqlBtn.addEventListener('click', () => {
 //Clear button makes num 1, num 2, & display value zero
 const clrBtn = document.querySelector('#clrBtn');
 clrBtn.addEventListener('click', () => {
-    num1 = 'undefined'
-    num2 = 'undefined'
+    num1 = null
+    num2 = null
     displayValue = 0
     screenUpdate();
 })
