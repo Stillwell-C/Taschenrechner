@@ -7,19 +7,25 @@ const container = document.querySelector('#main-body')
 
 function operate(num1, num2){
     if (operator == 'add'){
-        return displayValue = num1 + num2;
+        return num1 + num2;
     } else if (operator == 'subtract') {
-        return displayValue = num1 - num2;
+        return num1 - num2;
     } else if (operator == 'multiply') {
-        return displayValue = num1 * num2;
+        return num1 * num2;
     } else if (operator == 'divide') {
-        return displayValue = num1 / num2;
+        return num1 / num2;
     }
 }
 
 function calculate() {
-    operate(num1, num2);
-    screenUpdate()
+    console.log(num1);
+    console.log(num2);
+    num1 = operate(num1, num2);
+    console.log(num1);
+    num2 = null;
+    console.log(num2);
+    allotDV();
+    screenUpdate();
 }
 
 // Assign value when number button is clicked
