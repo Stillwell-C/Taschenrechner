@@ -1,0 +1,71 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-body {
+    width: 300px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    background-color: darkgray;
+}
+
+.screenDisplay{
+    height: 70px;
+    text-align: right;
+    background-color: lightgrey;
+    margin: 5px;
+    font-size: 60px;
+}
+
+.operatorBtn {
+    background-color: coral;
+}
+
+.top-btn {
+    background-color:midnightblue;
+}
+
+.numBtn {
+    background-color:darkolivegreen;
+}
+
+.button {
+    height: 70px;
+    width: 75px;
+    font-size: 25px;
+    color: white;
+    font-family:'Courier New', Courier, monospace;
+}
+
+#b0 {
+    height: 70px;
+    width: 150px;
+}
+
+.btn-line1 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn-line2 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn-line3 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn-line4 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn-line5 {
+    display: flex;
+    justify-content: space-around;
+}
