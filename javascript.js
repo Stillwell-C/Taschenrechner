@@ -2,7 +2,9 @@ let operator = null
 let currentValue = 0
 let displayValue = 0 //Make array?
 let num1
+let num1Over = false
 let num2
+let num2Over = false
 let snarkTest = false
 let multiCalc = false
 const container = document.querySelector('#main-body')
@@ -33,6 +35,7 @@ function calculate() {
     displayValue = decimalRounder(displayValue);
     screenUpdate();
     multiCalc = true;
+    num2Over = false
 }
 
 function decimalRounder(value) {
@@ -45,6 +48,7 @@ const sevenBtn = document.querySelector('#b7');
 sevenBtn.addEventListener('click', () => {
     let getIDValue = getID(sevenBtn);
     allotNum(getIDValue);
+    numberLimiter();
     allotDV();
     screenUpdate();
 });
@@ -53,6 +57,7 @@ const eightBtn = document.querySelector('#b8');
 eightBtn.addEventListener('click', () => {
     let getIDValue = getID(eightBtn);
     allotNum(getIDValue);
+    numberLimiter();
     allotDV();
     screenUpdate();
 });
@@ -61,6 +66,7 @@ const nineBtn = document.querySelector('#b9');
 nineBtn.addEventListener('click', () => {
     let getIDValue = getID(nineBtn);
     allotNum(getIDValue);
+    numberLimiter();
     allotDV();
     screenUpdate();
 });
@@ -69,6 +75,7 @@ const fourBtn = document.querySelector('#b4');
 fourBtn.addEventListener('click', () => {
     let getIDValue = getID(fourBtn);
     allotNum(getIDValue);
+    numberLimiter();
     allotDV();
     screenUpdate();
 });
@@ -77,6 +84,7 @@ const fiveBtn = document.querySelector('#b5');
 fiveBtn.addEventListener('click', () => {
     let getIDValue = getID(fiveBtn);
     allotNum(getIDValue);
+    numberLimiter();
     allotDV();
     screenUpdate();
 });
@@ -85,6 +93,7 @@ const sixBtn = document.querySelector('#b6');
 sixBtn.addEventListener('click', () => {
     let getIDValue = getID(sixBtn);
     allotNum(getIDValue);
+    numberLimiter();
     allotDV();
     screenUpdate();
 });
@@ -93,6 +102,7 @@ const oneBtn = document.querySelector('#b1');
 oneBtn.addEventListener('click', () => {
     let getIDValue = getID(oneBtn);
     allotNum(getIDValue);
+    numberLimiter();
     allotDV();
     screenUpdate();
 });
@@ -101,6 +111,7 @@ const twoBtn = document.querySelector('#b2');
 twoBtn.addEventListener('click', () => {
     let getIDValue = getID(twoBtn);
     allotNum(getIDValue);
+    numberLimiter();
     allotDV();
     screenUpdate();
 });
@@ -109,6 +120,7 @@ const threeBtn = document.querySelector('#b3');
 threeBtn.addEventListener('click', () => {
     let getIDValue = getID(threeBtn);
     allotNum(getIDValue);
+    numberLimiter();
     allotDV();
     screenUpdate();
 });
@@ -117,6 +129,7 @@ const zeroBtn = document.querySelector('#b0');
 zeroBtn.addEventListener('click', () => {
     let getIDValue = getID(zeroBtn);
     allotNum(getIDValue);
+    numberLimiter();
     allotDV();
     screenUpdate();
 });
@@ -124,6 +137,7 @@ zeroBtn.addEventListener('click', () => {
 const dcmBtn = document.querySelector('#dcmBtn');
 dcmBtn.addEventListener('click', () => {
     decimalAdder();
+    numberLimiter();
     allotDV();
     screenUpdate();
 })
@@ -141,7 +155,7 @@ function allotNum(value) {
     if (snarkTest == true) {
         clearAll();
         return num1 = value;
-    } else if (operator == null && multiCalc == false) {
+    } else if (operator == null && multiCalc == false && num1Over != true) {
         if (num1 != undefined || num1 != null) {
          let numValue = `${num1}${value}`
          return num1 = numValue;
@@ -151,14 +165,13 @@ function allotNum(value) {
     } else if (operator == null && multiCalc == true) {
         mCalOff();
         return num1 = value;
-    } else {
-        if (num2 != undefined || num2 != null) {
-            let numValue = `${num2}${value}`
-            return num2 = numValue;
-            } else {
-                return num2 = value;
-            }
-}}
+    } else if ((num2 != undefined || num2 != null) && num2Over != true) {
+        let numValue = `${num2}${value}`
+        return num2 = numValue;
+    } else if ((num2 == undefined || num2 == null) && operator != null) {
+        return num2 = value;
+    }
+}
 
 function mCalOff() {
     return multiCalc = false;
@@ -175,6 +188,7 @@ function allotDV() {
     }
 }
 
+//Allows decimal point to be added only once to each number
 function decimalAdder() {
     if (operator == null && multiCalc ==false) {
         if ((num1 != undefined || num1 != null) && ((num1 + '').includes('.') == false)) {
@@ -189,6 +203,27 @@ function decimalAdder() {
         return num2 = 0+'.';
     }
 }}
+
+//Limits display of numbers to 8 characters/numbers
+function numberLimiter() {
+    if (operator == null) {
+       let number = num1;
+       number = number.toString().length;
+       if (number < 8) {
+           return num1Over = false;
+       } else if (number > 7) {
+           return num1Over = true;
+       }
+    } else {
+        let number = num2;
+        number = number.toString().length;
+        if (number < 8) {
+            return num2Over = false;
+        } else if (number > 7) {
+           return num2Over = true;
+        }
+    }
+}
 
 //Assign operation to operator buttons
 //Removed num2 option for now due to error
@@ -245,6 +280,8 @@ clrBtn.addEventListener('click', () => clearAll())
 function clearAll() {
     num1 = null
     num2 = null
+    num1Over = false;
+    num2Over = false;
     operator = null;
     displayValue = 0
     snarkTest = false;
