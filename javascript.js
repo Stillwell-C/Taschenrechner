@@ -58,14 +58,30 @@ function outputChecker() {
        }
 }
 
+//Same as above function, used for prctBtn with num2 variable
+function outputCheckerNum2() {
+    let number = num2.toString().length;
+       if (number > 8) {
+           num2 = num2.toExponential(2);
+           sciNotOn();
+           makeSciNotValueNum2();
+           return num2;
+       }
+}
+
 //return positive value for sciNot variable
 function sciNotOn() {
     return sciNot = true
 }
 
-//make a sciNotValue
+//make a sciNotValue for num1
 function makeSciNotValue() {
     return sciNotValue = num1;
+}
+
+//make sciNotValue for num2
+function makeSciNotValueNum2() {
+    return sciNotValue = num2;
 }
 
 // Assign value when number button is clicked
@@ -228,7 +244,7 @@ function decimalAdder() {
     }
 }}
 
-//Limits display of numbers to 8 characters/numbers
+//Limits input of numbers to 8 characters/numbers
 function numberLimiter() {
     if (operator == null) {
        let number = num1;
@@ -317,14 +333,20 @@ prctBtn.addEventListener('click', () => {
     } else if (num2 == undefined || num2 == null) {
         num1 = (parseFloat(num1))*0.01
         num1 = decimalRounder(num1)
+        outputChecker()
         allotDV();
         screenUpdate();
+        sciNot = false;
+        sciNotValue = 0;
         return num1;
     } else {
         num2 = (parseFloat(num2))*0.01
         num2 = decimalRounder(num2)
+        outputCheckerNum2();
         allotDV();
         screenUpdate();
+        sciNot = false;
+        sciNotValue = 0;
         return num2;
     }
 })
