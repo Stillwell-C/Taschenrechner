@@ -138,7 +138,10 @@ function getID(btn) {
 
 //Allot inputs into either num1 variable or num2 variable
 function allotNum(value) {
-    if (operator == null && multiCalc == false) {
+    if (snarkTest == true) {
+        clearAll();
+        return num1 = value;
+    } else if (operator == null && multiCalc == false) {
         if (num1 != undefined || num1 != null) {
          let numValue = `${num1}${value}`
          return num1 = numValue;
@@ -236,7 +239,10 @@ eqlBtn.addEventListener('click', () => {
 
 //Clear button makes num 1, num 2, & display value zero
 const clrBtn = document.querySelector('#clrBtn');
-clrBtn.addEventListener('click', () => {
+clrBtn.addEventListener('click', () => clearAll())
+
+//Clear all variables to reset calculator and update screen
+function clearAll() {
     num1 = null
     num2 = null
     operator = null;
@@ -244,7 +250,7 @@ clrBtn.addEventListener('click', () => {
     snarkTest = false;
     multiCalc = false;
     screenUpdate();
-})
+}
 
 const prctBtn = document.querySelector('#prctBtn');
 prctBtn.addEventListener('click', () => {
