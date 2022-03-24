@@ -1,12 +1,13 @@
 let operator = null
-let currentValue = 0
-let displayValue = 0 //Make array?
+let displayValue = 0 
 let num1
 let num1Over = false
 let num2
 let num2Over = false
 let snarkTest = false
 let multiCalc = false
+let sciNot = false
+let sciNotValue = 0
 const container = document.querySelector('#main-body')
 
 function operate(num1, num2){
@@ -31,15 +32,40 @@ function calculate() {
     num1 = operate(num1, num2);
     num2 = null;
     operator = null;
+    outputChecker();
     allotDV();
     displayValue = decimalRounder(displayValue);
     screenUpdate();
     multiCalc = true;
-    num2Over = false
+    num2Over = false;
+    sciNot = false;
+    sciNotValue = 0;
 }
 
+//Round decimals to thousands place
 function decimalRounder(value) {
     return value = Math.round((value + Number.EPSILON) * 1000) / 1000;
+}
+
+//turn output into scientific notation if too long
+function outputChecker() {
+    let number = num1.toString().length;
+       if (number > 8) {
+           num1 = num1.toExponential(2);
+           sciNotOn();
+           makeSciNotValue();
+           return num1;
+       }
+}
+
+//return positive value for sciNot variable
+function sciNotOn() {
+    return sciNot = true
+}
+
+//make a sciNotValue
+function makeSciNotValue() {
+    return sciNotValue = num1;
 }
 
 // Assign value when number button is clicked
@@ -181,10 +207,8 @@ function mCalOff() {
 function allotDV() {
     if (num2 == undefined || num2 == null) {
         return displayValue = num1;
-        // return displayValue = Math.round((displayValue + Number.EPSILON) * 1000) / 1000;
     } else {
        return displayValue = num2;
-    //    return displayValue = Math.round((displayValue + Number.EPSILON) * 1000) / 1000;
     }
 }
 
@@ -226,9 +250,6 @@ function numberLimiter() {
 }
 
 //Assign operation to operator buttons
-//Removed num2 option for now due to error
-//typeof num1 == 'undefined' ?
-//num1 = displayValue : num2 = displayValue;
 
 const dvdBtn = document.querySelector('#dvdBtn');
 dvdBtn.addEventListener('click', () => { 
@@ -322,6 +343,10 @@ function screenUpdate() {
     screenDisplay.textContent = 'Not so fast, buster. ';
     screenDisplay.setAttribute('style', 'font-size: 37px');
     screenContainer.appendChild(screenDisplay);
+    } else if (sciNot == true) {
+        screenDisplay.textContent = sciNotValue;
+        screenDisplay.setAttribute('style', 'font-size: 70px');
+        screenContainer.appendChild(screenDisplay);
     } else {
     screenDisplay.textContent = displayValue;
     screenDisplay.setAttribute('style', 'font-size: 70px');
